@@ -1,0 +1,1 @@
+export const TASKS_BASE_URL = "/api/tasks";
