@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require('cors');
 const taskRoutes = require('./routes/routes');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocs = require('./swagger/swaggerDocs');
 
 // Load environment variables
 dotenv.config();
@@ -28,6 +30,9 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Use task routes
 app.use("/api/tasks", taskRoutes);
+
+// Swagger setup
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // App listen to port 5000  
 app.listen(port, () => {
