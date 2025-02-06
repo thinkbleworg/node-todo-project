@@ -8,16 +8,24 @@ const options = {
       version: "1.0.0",
       description: "A simple API for managing tasks using MongoDB",
     },
+    components: {
+      securitySchemes: {
+        BearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
     servers: [
       {
-        url: "http://localhost:5000",
+        url: `http://localhost:${process.env.PORT}`,
       },
     ],
   },
-  apis: ["./routes/routes.js"], // Path to the API routes file
+  apis: ["./routes/*.js"], // Path to the API routes file
 };
 
 const swaggerDocs = swaggerJsdoc(options);
-console.log("swagger Docs", swaggerDocs);
 
 module.exports = swaggerDocs;

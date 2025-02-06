@@ -1,7 +1,7 @@
-import Task from "../models/tasks.mjs";
+const Task = require("../models/tasks");
 
 // Create a task
-export const createTask = async (req, res) => {
+const createTask = async (req, res) => {
   const { title, description, status } = req.body;
   
   if (!title || !description) {
@@ -18,7 +18,7 @@ export const createTask = async (req, res) => {
 };
 
 // Get all tasks
-export const getTasks = async (req, res) => {
+const getTasks = async (req, res) => {
   try {
     const tasks = await Task.find();
     res.status(200).json(tasks);
@@ -28,7 +28,7 @@ export const getTasks = async (req, res) => {
 };
 
 // Get task by ID
-export const getTaskById = async (req, res) => {
+const getTaskById = async (req, res) => {
   try {
     const task = await Task.findById(req.params.id);
     if (!task) {
@@ -41,7 +41,7 @@ export const getTaskById = async (req, res) => {
 };
 
 // Update task
-export const updateTask = async (req, res) => {
+const updateTask = async (req, res) => {
   const { title, description, status } = req.body;
   
   try {
@@ -62,7 +62,7 @@ export const updateTask = async (req, res) => {
 };
 
 // Delete task
-export const deleteTask = async (req, res) => {
+const deleteTask = async (req, res) => {
   try {
     const task = await Task.findByIdAndDelete(req.params.id);
     
@@ -74,4 +74,12 @@ export const deleteTask = async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: 'Error deleting task', details: err.message });
   }
+};
+
+module.exports = {
+  createTask,
+  getTasks,
+  getTaskById,
+  updateTask,
+  deleteTask
 };

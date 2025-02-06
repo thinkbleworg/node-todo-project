@@ -1,0 +1,125 @@
+.tasks-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.tasks-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 30px;
+}
+
+.tasks-container input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.tasks-container button:not(.logout-btn) {
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.tasks-container button:hover {
+  background-color: #45a049;
+}
+
+.task-table {
+  width: 100%;
+  max-width: 800px;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.task-table th,
+.task-table td {
+  padding: 12px;
+  text-align: left;
+}
+
+.task-table th {
+  background-color: #4caf50;
+  color: white;
+}
+
+.task-table td {
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #ddd;
+  color: #333;
+}
+
+.task-table td button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-left: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.task-table td button:hover {
+  background-color: #0056b3;
+}
+
+.task-status {
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+.task-status.ToDo {
+  background-color: #ffb84d;
+  color: #fff;
+}
+
+.task-status.InProgress {
+  background-color: #00b0f0;
+  color: #fff;
+}
+
+.task-status.Done {
+  background-color: #66b966;
+  color: #fff;
+}
+
+.no-tasks-message {
+  font-size: 18px;
+  color: #888;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.logout-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 10;
+  }
+  
+  .logout-btn:hover {
+    background-color: #ff3333;
+  }
+  
