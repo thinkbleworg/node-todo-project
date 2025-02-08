@@ -1,19 +1,37 @@
 const request = require('supertest');
-const {app, connectDB} = require('../app');
-const mongoose = require('mongoose');
+const {app} = require('../app');
+const User = require('../models/users');
+const bcrypt = require('bcryptjs');
+
+jest.mock('../models/users');
 
 describe('Authentication API', () => {
 
-  beforeAll(async () => {
-    await connectDB();
-    await new Promise((resolve, reject) => {
-      mongoose.connection.once('open', resolve);
-      mongoose.connection.on('error', reject);
-    });
-  });
+  const userObject = {
+    _id: 'mock-user-id',
+    email: 'testuser@example.com',
+    password: bcrypt.hashSync('yourSecurePassword', 10), // Mock hashed password
+    comparePassword: jest.fn().mockResolvedValue(true),
+  };
 
-  afterAll(async () => {
-    await mongoose.disconnect();
+  beforeAll(() => {
+
+    // Mock User.save
+    User.mockImplementation(() => ({
+      save: jest.fn().mockResolvedValue({
+        _id: 'mockUserId123',
+        email: 'newuser4@example.com',
+        password: 'password123',
+      }),
+    }));
+
+    // Mock User.findOne() for login and register cases
+    User.findOne.mockImplementation((query) => {
+      if (query.email === 'testuser@example.com') {
+        return Promise.resolve(userObject);
+      }
+      return Promise.resolve(null);
+    });
   });
 
   // Tests for register

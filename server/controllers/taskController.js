@@ -9,10 +9,11 @@ const createTask = async (req, res) => {
   }
 
   try {
-    const task = new Task({ title, description, status: status || "To Do" });
-    await task.save();
+    const task = await Task.create({ title, description, status: status || "To Do" });
+
     res.status(201).json(task);
   } catch (err) {
+    console.error('Task creation error:', err);
     res.status(400).json({ error: 'Failed to create task', details: err.message });
   }
 };
