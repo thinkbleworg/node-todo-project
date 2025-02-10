@@ -14,7 +14,7 @@ const createTask = async (req, res) => {
     res.status(201).json(task);
   } catch (err) {
     console.error('Task creation error:', err);
-    res.status(400).json({ error: 'Failed to create task', details: err.message });
+    res.status(500).json({ error: 'Failed to create task', details: err.message });
   }
 };
 
@@ -58,7 +58,7 @@ const updateTask = async (req, res) => {
     
     res.status(200).json(task);
   } catch (err) {
-    res.status(400).json({ error: 'Failed to update task', details: err.message });
+    res.status(500).json({ error: 'Failed to update task', details: err.message });
   }
 };
 

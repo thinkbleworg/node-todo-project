@@ -21,7 +21,7 @@ const loginUser = async (req, res) => {
     const token = generateToken(user._id);
     res.json({ token });
   } catch (error) {
-    console.log("error in loginUser", error);
+    // console.log("error in loginUser", error);
     res.status(500).json({ message: 'Error logging in', error });
   }
 };
@@ -61,8 +61,8 @@ const registerUser = async (req, res) => {
     const token = generateToken(newUser._id);
     return res.status(201).json({ token });
   } catch (error) {
-    console.error("Error during user registration", error);
-    return res.status(500).json({ message: 'Server error' });
+    // console.error("Error during user registration", error);
+    return res.status(500).json({ message: 'Error during user registration' });
   }
 };
 
